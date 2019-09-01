@@ -29,8 +29,8 @@ public class Toys extends Commodity {
     public Toys() {
         }
 
-    public Toys(int price, String name, String description, Country producingCountry, String brand, int age, Sex sex) {
-        super(price, name, description, producingCountry, brand);
+    public Toys(int price, String name, String description, Country country, String brand, int age, Sex sex) {
+        super(price, name, description,country, brand);
         this.age = age;
         this.sex = sex;
     }
