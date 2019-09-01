@@ -44,36 +44,6 @@ public class ClothingController {
         return "clothing";
     }
 
-   /* @PostMapping(value = "/saveclothing" )
-    public String save(Model model,
-            @RequestParam String brand,
-            @RequestParam String description,
-            @RequestParam String name,
-            @RequestParam String price,
-            @RequestParam Country country,
-            @RequestParam String age,
-                       @RequestParam Size sizeValue,
-                       @RequestParam Sex sexValue
-    )
-    {
-
-
-        Clothing clothing=new Clothing();
-
-        clothing.setBrand(brand);
-        clothing.setDescription(description);
-        clothing.setName(name);
-        clothing.setPrice(Integer.parseInt(price));
-        clothing.setCountry(country);
-        clothing.setAge(Integer.parseInt(age));
-        clothing.setSize(sizeValue);
-        clothing.setSex(sexValue);
-
-        clothingService.save(clothing);
-
-        return "redirect:/clothing";
-    }*/
-
     @PostMapping(value = "clothing")
     public String save(Clothing clothing){
         clothingService.save(clothing);
@@ -82,41 +52,19 @@ public class ClothingController {
     }
 
     @GetMapping(value ="/updateClothing/{id}")
-            String update(@PathVariable int id,Model model){
-       Clothing clothing= clothingService.findOne(id);
-
-        model.addAttribute("currentClothing",clothing);
+           public String update(@PathVariable int id,Model model){
+       model.addAttribute("currentClothing",clothingService.findOne(id));
         model.addAttribute("countries" ,countryService.findAll());
         return "/updateClothing";
     }
     @PostMapping(value ="/updateClothing/{id}")
-    public String update(@PathVariable int id,
-                         @RequestParam String brand,
-                         @RequestParam String description,
-                         @RequestParam String name,
-                         @RequestParam String price,
-                         @RequestParam Country country,
-                         @RequestParam String age,
-                       @RequestParam Size sizeValue,
-                        @RequestParam Sex sexValue
-     )
-    {
-       Clothing clothing= clothingService.findOne(id);
-
-        clothing.setBrand(brand);
-        clothing.setDescription(description);
-        clothing.setName(name);
-        clothing.setPrice(Integer.parseInt(price));
-        clothing.setCountry(country);
-        clothing.setAge(Integer.parseInt(age));
-        clothing.setSize(sizeValue);
-        clothing.setSex(sexValue);
-
+    public String updateClothing(Clothing clothing){
         clothingService.save(clothing);
         return "redirect:/clothing";
     }
 
-    @RequestMapping(value = "/deleteClothing/{id}",method = RequestMethod.GET)
+
+    @GetMapping(value = "/deleteClothing/{id}")
     public String deleteClothing(@PathVariable int id){
         clothingService.delete(id);
         return "redirect:/clothing";

@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%--
   Created by IntelliJ IDEA.
   User: Michail
@@ -11,49 +12,19 @@
 <head>
     <title></title>
 </head>
-<%--<body>
-      <form action="/updateClothing/${currentClothing.id}" method="post">
+<body>
+<form:form modelAttribute="currentClothing"  method="post">
+    <form:input path="brand"/>
+    <form:input path="description"/>
+    <form:input path="name"/>
+    <form:input path="price"/>
+    <form:input path="age"/>
 
-          <input type="text" name="brand" value="${currentClothing.brand}">
-          <br>
-          <br>
-          <input type="text" name="description" value="${currentClothing.description}">
-          <br>
-          <br>
-          <input type="text" name="name" value="${currentClothing.name}">
-          <br>
-          <br>
-          <input type="text" name="price" value="${currentClothing.price}">
-          <br>
-          <input type="text" name="age" value="${currentClothing.age}">
-          <br>
+    <form:select path="country" items="${countries}" itemLabel="name" itemValue="id"/>
+    <form:select path="sex" items="<%=toys.entity.Enum.Sex.values()%>"  />
+    <form:select path="size" items="<%=toys.entity.Enum.Size.values()%>"/>
+    <button>save</button>
 
-          <select name="sizeValue" >
-              <option>${currentClothing.size}</option>
-              <c:forEach var="sz" items="<%=toys.entity.Enum.Size.values()%>">
-                  <option value="${sz}">${sz.name()}</option>
-              </c:forEach>
-          </select >
-          <br>
-          <br>
-          <select name="sexValue" >
-              <option>${currentClothing.sex}</option>
-              <c:forEach var="sex" items="<%=toys.entity.Enum.Sex.values()%>">
-                  <option value="${sex.name()}">${sex.name()}</option>
-              </c:forEach>
-          </select >
-          <br>
-
-          <br>
-          <select name="country" >
-              <option>${currentClothing.country}</option>
-              <c:forEach var="country" items="${countries}">
-                  <option value="${country.id}">${country.name}</option>
-              </c:forEach>
-          </select >
-          <br>
-          <button>save </button>
-
-        </form>--%>
+</form:form>
 </body>
 </html>
