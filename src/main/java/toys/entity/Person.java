@@ -1,6 +1,9 @@
 package toys.entity;
 
+import com.sun.istack.NotNull;
+
 import javax.persistence.MappedSuperclass;
+import javax.validation.constraints.Size;
 
 /**
  * Created by Michail on 6/7/2019.
@@ -11,7 +14,9 @@ public abstract class Person {
 //    @GeneratedValue(strategy = GenerationType.IDENTITY)
 //    private int id;
     private String name;
+    @Size(min=2, max=50)
     private String pssword;
+
     private String email;
 
     public Person() {
@@ -30,6 +35,7 @@ public abstract class Person {
     public void setName(String name) {
         this.name = name;
     }
+
 
     public String getPssword() {
         return pssword;

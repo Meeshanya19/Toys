@@ -38,36 +38,42 @@ public class FurnitureController {
         binder.registerCustomEditor(Country.class, new CountryEditor(countryService));
     }
 
-    @GetMapping(value = "/furniture" )
+    @GetMapping(value = "/admin/furniture" )
     public String furniture(Model model){
         model.addAttribute("allFurniture",furnitureService.findAll());
         model.addAttribute("newFurniture", new Furniture());
         model.addAttribute("countries",countryService.findAll() );
-        return "furniture";
+        return "admin/furniture";
     }
-    @PostMapping(value = "/furniture")
+
+    @GetMapping(value = "/furniture" )
+    public String furnitureUser(Model model){
+        model.addAttribute("allFurniture",furnitureService.findAll());
+        return "user/furniture";
+    }
+    @PostMapping(value = "/admin/furniture")
     public   String save(Furniture furniture){
         furnitureService.save(furniture);
 
-        return "redirect:/furniture";
+        return "redirect:/admin/furniture";
     }
     @GetMapping(value ="/deleteFurniture/{id}")
     public String deleteFurniture(@PathVariable int id){
         furnitureService.delete(id);
-        return "redirect:/furniture";
+        return "redirect:/admin/furniture";
     }
 
     @GetMapping(value ="/updateFurniture/{id}")
     public String updateFurniture(@PathVariable int id, Model model){
         model.addAttribute("furniture",furnitureService.findOne(id));
         model.addAttribute("countries",countryService.findAll() );
-        return "updateFurniture";
+        return "update/updateFurniture";
     }
 
     @PostMapping(value ="/updateFurniture/{id}" )
     public String updateFurniture(Furniture furniture){
         furnitureService.save(furniture);
-        return "redirect:/furniture";
+        return "redirect:/admin/furniture";
     }
 }
 

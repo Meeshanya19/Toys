@@ -32,34 +32,40 @@ public class ToysController {
         binder.registerCustomEditor(Country.class, new CountryEditor(countryService));
     }
 
-    @GetMapping(value = "/toys" )
+    @GetMapping(value = "/admin/toys" )
     public String toys (Model model){
         model.addAttribute("allToys",toysService.findAll());
         model.addAttribute("newToys", new Toys());
         model.addAttribute("countries",countryService.findAll() );
-        return "toys";
+        return "admin/toys";
     }
-    @PostMapping(value = "/toys")
+
+    @GetMapping(value = "/toys" )
+    public String toysUser (Model model){
+        model.addAttribute("allToys",toysService.findAll());
+        return "user/toys";
+    }
+    @PostMapping(value = "/admin/toys")
     public   String save(Toys toys){
         toysService.save(toys);
-        return "redirect:/toys";
+        return "redirect:/admin/toys";
     }
     @GetMapping(value ="/deleteToys/{id}")
     public String deleteToys(@PathVariable int id){
         toysService.delete(id);
-        return "redirect:/toys";
+        return "redirect:/admin/toys";
     }
 
     @GetMapping(value ="/updateToys/{id}")
     public String updateToys(@PathVariable int id, Model model){
         model.addAttribute("toy", toysService.findOne(id));
         model.addAttribute("countries",countryService.findAll() );
-        return "updateToys";
+        return "update/updateToys";
     }
 
     @PostMapping(value ="/updateToys/{id}" )
     public String updateToys(Toys toys){
         toysService.save(toys);
-        return "redirect:/toys";
+        return "redirect:/admin/toys";
     }
 }

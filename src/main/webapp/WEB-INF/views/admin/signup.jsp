@@ -11,44 +11,28 @@
 <html>
 <head>
     <title></title>
+
 </head>
 <body>
 <a href="/home">home</a>
 
+<span style="color: red">${userNameException}</span>
 <form:form modelAttribute="user" action="/signup" method="post">
-  <form:input path="name"/>
+   <form:input path="name"/>
   <form:input path="pssword"/>
   <form:input path="email"/>
   <form:input path="shippindAddress"/>
   <button>save</button>
 </form:form>
 
-<%--<div style="text-align:center; margin-top:10%">
-  <form action="/saveuser" method="post">
-    <input type="text" name="username" placeholder="username">
-    <br>
-    <br>
-    <input type="text" name="usermail" placeholder="usermail">
-    <br>
-    <br>
-    <input type="text" name="userpassword" placeholder="userpassword">
-    <br>
-    <br>
-    <input type="text" name="usershipadres" placeholder="usershipadres">
-    <br>
-    <br>
 
-
-    <button>save user</button>
-
-  </form>
-  </div>--%>
 
 <ol>
   <c:forEach var="user" items="${users}">
    <li>${user.id} ${user.name} ${user.email} ${user.pssword} ${user.shippindAddress}  <a href="/deleteUser/${user.id}">delete</a>  <a href="/updateUser/${user.id}">update</a>  </li>
   </c:forEach>
 </ol>
+
 
 </body>
 </html>

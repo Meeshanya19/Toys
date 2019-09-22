@@ -32,7 +32,7 @@ public class ClothingController {
         binder.registerCustomEditor(Country.class, new CountryEditor(countryService));
     }
 
-    @GetMapping(value = "/clothing" )
+    @GetMapping(value = "/admin/clothing" )
    public String clothing(Model model){
         model.addAttribute("clothin",clothingService.findAll());
         List<Size>sizeList=new ArrayList<Size>(Arrays.asList(Size.values()));
@@ -41,32 +41,44 @@ public class ClothingController {
         model.addAttribute("sex",sesxList);
         model.addAttribute("countries", countryService.findAll());
         model.addAttribute("clothing", new Clothing());
-        return "clothing";
+        return "admin/clothing";
     }
 
-    @PostMapping(value = "clothing")
+    @GetMapping(value = "/clothing" )
+    public String clothingUser(Model model){
+        model.addAttribute("clothin",clothingService.findAll());
+        List<Size>sizeList=new ArrayList<Size>(Arrays.asList(Size.values()));
+        model.addAttribute("size", sizeList);
+        List<Sex>sesxList=new ArrayList<Sex>(Arrays.asList(Sex.values()));
+        model.addAttribute("sex",sesxList);
+        model.addAttribute("countries", countryService.findAll());
+
+        return "/user/clothing";}
+
+
+        @PostMapping(value = "admin/clothing")
     public String save(Clothing clothing){
         clothingService.save(clothing);
 
-        return "redirect:/clothing";
+        return "redirect:/admin/clothing";
     }
 
     @GetMapping(value ="/updateClothing/{id}")
            public String update(@PathVariable int id,Model model){
        model.addAttribute("currentClothing",clothingService.findOne(id));
         model.addAttribute("countries" ,countryService.findAll());
-        return "/updateClothing";
+        return "/update/updateClothing";
     }
     @PostMapping(value ="/updateClothing/{id}")
     public String updateClothing(Clothing clothing){
         clothingService.save(clothing);
-        return "redirect:/clothing";
+        return "redirect:/admin/clothing";
     }
 
 
     @GetMapping(value = "/deleteClothing/{id}")
     public String deleteClothing(@PathVariable int id){
         clothingService.delete(id);
-        return "redirect:/clothing";
+        return "redirect:/admin/clothing";
     }
 }

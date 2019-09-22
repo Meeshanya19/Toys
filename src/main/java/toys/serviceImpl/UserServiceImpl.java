@@ -1,10 +1,12 @@
 package toys.serviceImpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import toys.dao.UserDao;
 import toys.entity.User;
 import toys.service.UserService;
+import toys.validator.Validator;
 
 import java.util.List;
 
@@ -17,8 +19,14 @@ public class UserServiceImpl implements UserService {
     @Autowired
     UserDao userDao;
 
-    public void save(User user) {
-userDao.save(user);
+    @Autowired
+    @Qualifier("userValidator")
+    Validator validator;
+
+    public void save(User user) throws Exception {
+validator.validate(user);
+
+        userDao.save(user);
     }
 
     public List<User> findAll() {

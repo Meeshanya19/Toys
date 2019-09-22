@@ -3,9 +3,11 @@ package toys.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import toys.entity.User;
 import toys.service.UserService;
+import toys.validator.userValidator.UserValidatorMessages;
 
 /**
  * Created by Michail on 7/30/2019.
@@ -19,61 +21,69 @@ public class UserController {
     @Autowired
     HomeController homeController;
 
-
     @GetMapping(value = "/signup")
     public String signup(Model model){
+      //  model.addAttribute("users",userService.findAll());
+        model.addAttribute("user",new User());
+        return "user/signup";
+    }
+
+    @PostMapping(value ="/user/signup")
+    public String saveUser(User user,Model model ){
+        try {
+            userService.save(user);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        model.addAttribute("user",user);
+
+        return "user/userData";
+    }
+
+    @GetMapping(value = "/admin/signup")
+    public String AdminSignup(Model model){
         model.addAttribute("users",userService.findAll());
         model.addAttribute("user",new User());
-        return "signup";
+        return "admin/signup";
     }
-    @PostMapping(value = "/signup")
-    public String save (@ModelAttribute User user){
-        userService.save(user);
-        return "redirect:/signup";
+    @PostMapping(value = "/admin/signup")
+    public String save (User user,@ModelAttribute Model model){
+        try {
+            userService.save(user);
+        } catch (Exception e) {
+           if(e.getMessage().equals(UserValidatorMessages.USER_NAME_EMPTY)||e.getMessage().equals(UserValidatorMessages.USER_NAME_ALREADY_EXIST))
+           {
+               model.addAttribute("userNameException",e.getMessage());
+               return "admin/signup";
+           }
+        }
+        return "redirect:/admin/signup";
     }
 
-   /* @PostMapping(value = "/saveuser")
-    public String saveUser(@RequestParam User user)
-    {
-        User user =new User();
-        user.setName(username);
-        user.setEmail(usermail);
-        user.setPssword(userpassword);
-        user.setShippindAddress(usershipadres);
 
-        userService.save(user);
-
-    return "redirect:/signup";}*/
 
     @GetMapping(value = "updateUser/{id}")
     String update(@PathVariable int id,Model model){
         User user=userService.findOne(id);
         model.addAttribute("currentUser",user);
-        return "/updateUser";
+        return "/update/updateUser";
     }
 
     @PostMapping(value ="updateUser/{id}")
-    String update(@PathVariable int id,
-                  @RequestParam String username,
-                  @RequestParam String usermail,
-                  @RequestParam String userpassword,
-                  @RequestParam String usershipadres)
+    String update(User user)
     {
-     User user=userService.findOne(id);
-        user.setName(username);
-        user.setEmail(usermail);
-        user.setPssword(userpassword);
-        user.setShippindAddress(usershipadres);
-
-        userService.save(user);
-
-        return "redirect:/signup";
+        try {
+            userService.save(user);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "redirect:/admin/signup";
     }
 
     @GetMapping(value ="/deleteUser/{id}")
     public String deleteUser(@PathVariable int id){
         userService.delete(id);
-        return "redirect:/signup";
+        return "redirect:/admin/signup";
     }
 @GetMapping(value = "/signup/home")
    public String home(){

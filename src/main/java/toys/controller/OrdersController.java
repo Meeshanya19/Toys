@@ -5,12 +5,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import toys.entity.Orders;
-import toys.entity.User;
 import toys.service.ClothingService;
 import toys.service.OrdersService;
 import toys.service.UserService;
-
-import java.util.Date;
 
 /**
  * Created by Michail on 8/6/2019.
@@ -29,12 +26,12 @@ public class OrdersController {
     @Autowired
     private ClothingService clothingService;
 
-    @RequestMapping(value = "/orders", method = RequestMethod.GET)
+    @RequestMapping(value = "/admin/orders", method = RequestMethod.GET)
     public String signup(Model model,Model usreM,Model clothingM) {
         model.addAttribute("orders", ordersService.findAll());
         usreM.addAttribute("users", userService.findAll());
         clothingM.addAttribute("clothing", clothingService.findAll());
-        return "orders";
+        return "admin/orders";
     }
 
     @RequestMapping(value = "/saveorder", method = RequestMethod.POST)

@@ -1,6 +1,8 @@
 package toys.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.List;
 
 /**
@@ -12,6 +14,7 @@ public class User extends Person {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @Size(min=2,max = 50)
     private String shippindAddress;
 
     @OneToMany(mappedBy = "user")

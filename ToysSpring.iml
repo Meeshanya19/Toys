@@ -45,7 +45,7 @@
       </configuration>
     </facet>
   </component>
-  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_5" inherit-compiler-output="false">
+  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_8" inherit-compiler-output="false">
     <output url="file://$MODULE_DIR$/target/classes" />
     <output-test url="file://$MODULE_DIR$/target/test-classes" />
     <content url="file://$MODULE_DIR$">
@@ -56,6 +56,7 @@
     </content>
     <orderEntry type="jdk" jdkName="1.8" jdkType="JavaSDK" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="jquery-3.4.1" level="application" />
     <orderEntry type="library" name="Maven: mysql:mysql-connector-java:6.0.6" level="project" />
     <orderEntry type="library" name="Maven: org.hibernate:hibernate-core:5.4.2.Final" level="project" />
     <orderEntry type="library" name="Maven: org.jboss.logging:jboss-logging:3.3.2.Final" level="project" />
@@ -143,6 +144,8 @@
     <orderEntry type="library" name="Maven: javax.mail:javax.mail-api:1.5.6" level="project" />
     <orderEntry type="library" name="Maven: com.sun.mail:javax.mail:1.5.6" level="project" />
     <orderEntry type="library" name="Maven: javax.activation:activation:1.1" level="project" />
+    <orderEntry type="library" name="Maven: org.hibernate.validator:hibernate-validator:6.0.17.Final" level="project" />
+    <orderEntry type="library" name="Maven: javax.validation:validation-api:2.0.1.Final" level="project" />
     <orderEntry type="library" name="Maven: org.jsoup:jsoup:1.10.2" level="project" />
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.9.8" level="project" />
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.9.0" level="project" />

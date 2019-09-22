@@ -24,40 +24,7 @@
     </c:forEach>
 </ol>
 <div style="text-align:center; margin-top:10%">
-<%--  <form action="/saveclothing" method="post">
-    <input type="text" name="brand" placeholder="brand">
-    <br>
-    <br>
-    <input type="text" name="description" placeholder="description">
-    <br>
-    <br>
-    <input type="text" name="name" placeholder="name">
-    <br>
-    <br>
-    <input type="text" name="price" placeholder="price">
-    <br>
-    <br>
-    <input type="text" name="age" placeholder="age">
-    <br>
 
-    <select name="sizeValue" >
-      <option>size</option>
-      <c:forEach var="sz" items="${size}">
-        <option value="${sz}">${sz}</option>
-      </c:forEach>
-            </select >
-    <br>
-    <br>
-    <select name="sexValue" >
-      <option>sex</option>
-      <c:forEach var="sex" items="${sex}">
-        <option value="${sex}">${sex}</option>
-      </c:forEach>
-    </select >
-<br>
-    <button>save </button>
-
-  </form>--%>
   <form:form modelAttribute="clothing" method="post">
     <form:input path="brand"/>
     <form:input path="description"/>

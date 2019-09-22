@@ -32,34 +32,42 @@ public class MamsController {
         binder.registerCustomEditor(Country.class, new CountryEditor(countryService));
     }
 
-    @GetMapping(value = "/mams" )
+    @GetMapping(value = "/admin/mams" )
     public String mams(Model model){
         model.addAttribute("allMams",mamsServise.findAll());
         model.addAttribute("newMams", new Mams());
         model.addAttribute("countries",countryService.findAll() );
-        return "mams";
+        return "admin/mams";
     }
-    @PostMapping(value = "/mams")
+
+
+    @GetMapping(value = "/mams" )
+    public String mamsUser(Model model){
+        model.addAttribute("allMams",mamsServise.findAll());
+
+        return "user/mams";
+    }
+    @PostMapping(value = "/admin/mams")
     public   String save(Mams mams){
         mamsServise.save(mams);
-        return "redirect:/mams";
+        return "redirect:/admin/mams";
     }
     @GetMapping(value ="/deleteMams/{id}")
     public String deleteMams(@PathVariable int id){
         mamsServise.delete(id);
-        return "redirect:/mams";
+        return "redirect:/admin/mams";
     }
 
     @GetMapping(value ="/updateMams/{id}")
     public String updateMams(@PathVariable int id, Model model){
         model.addAttribute("mams", mamsServise.findOne(id));
         model.addAttribute("countries",countryService.findAll() );
-        return "updateMams";
+        return "update/updateMams";
     }
 
     @PostMapping(value ="/updateMams/{id}" )
     public String updateMams(Mams mams){
         mamsServise.save(mams);
-        return "redirect:/mams";
+        return "redirect:/admin/mams";
     }
 }

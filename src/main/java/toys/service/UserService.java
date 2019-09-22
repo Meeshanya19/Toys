@@ -8,7 +8,7 @@ import java.util.List;
  * Created by Michail on 7/23/2019.
  */
 public interface UserService {
-    void save(User user);
+    void save(User user) throws Exception;
     List<User> findAll();
     void delete(int id);
     void update(User user,int id);
