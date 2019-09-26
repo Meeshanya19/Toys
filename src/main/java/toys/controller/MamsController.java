@@ -62,7 +62,7 @@ public class MamsController {
     public String updateMams(@PathVariable int id, Model model){
         model.addAttribute("mams", mamsServise.findOne(id));
         model.addAttribute("countries",countryService.findAll() );
-        return "update/updateMams";
+        return "update/mams";
     }
 
     @PostMapping(value ="/updateMams/{id}" )

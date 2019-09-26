@@ -19,11 +19,10 @@ public class Mams extends Commodity {
     private Sex sex;
 
     @ManyToMany
-    @JoinTable(name ="orders_mams",
-            joinColumns = @JoinColumn(name="mams_id"),
+    @JoinTable(name = "orders_mams",
+            joinColumns = @JoinColumn(name = "mams_id"),
             inverseJoinColumns = @JoinColumn(name = "orders_id"))
     private List<Orders> orders;
-
 
 
     public Mams() {

@@ -16,14 +16,15 @@
 <body>
 <a href="/home">home</a>
 
-<span style="color: red">${userNameException}</span>
 <form:form modelAttribute="user" action="/user/signup" method="post">
-   <form:input path="name"/>
-  <form:input path="pssword"/>
-  <form:input path="email"/>
-  <form:input path="shippindAddress"/>
+   <form:input path="name" placeholder="name"/>
+  <form:input path="pssword"  placeholder="password"/>
+  <form:input path="email"  placeholder="email"/>
+  <form:input path="shippindAddress"  placeholder="shippingAddres"/>
   <button>save</button>
 </form:form>
+<span style="color: red">${userNameException}</span>
+
 
 
 

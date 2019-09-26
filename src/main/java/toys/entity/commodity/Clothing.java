@@ -34,7 +34,8 @@ public class Clothing extends Commodity {
     public Clothing() {
     }
 
-    public Clothing(int price, String name, String description, Country country, String brand, int age, Sex sex, Size size) {
+    public Clothing(int price, String name, String description, Country country, String brand,
+                    int age, Sex sex, Size size) {
         super(price, name, description, country, brand);
         this.age = age;
         this.sex = sex;

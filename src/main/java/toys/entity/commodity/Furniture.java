@@ -23,17 +23,17 @@ public class Furniture extends Commodity {
     private Material material;
 
     @ManyToMany
-    @JoinTable(name ="orders_furniture",
-            joinColumns = @JoinColumn(name="furniture_id "),
+    @JoinTable(name = "orders_furniture",
+            joinColumns = @JoinColumn(name = "furniture_id "),
             inverseJoinColumns = @JoinColumn(name = "orders_id"))
     private List<Orders> orders;
-
 
 
     public Furniture() {
     }
 
-    public Furniture(int price, String name, String description,Country country, String brand, int age, Sex sex, Material material) {
+    public Furniture(int price, String name, String description, Country country,
+                     String brand, int age, Sex sex, Material material) {
         super(price, name, description, country, brand);
         this.age = age;
         this.sex = sex;

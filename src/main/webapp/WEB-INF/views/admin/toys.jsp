@@ -14,15 +14,35 @@
 <body>
 
 <a href="/home">home</a>
-<ol>
-  <c:forEach var="toy" items="${allToys}">
+<table align="center">
+  <tr align="center">
+    <td>brand</td>
+    <td>description</td>
+    <td>name</td>
+    <td>age</td>
+    <td>price</td>
+    <td>country</td>
+    <td>sex</td>
+    <td>delete</td>
+    <td>update</td>
 
-    <li>${toy.id}  name: ${toy.name}    price: ${toy.price}  description: ${toy.description} brand: ${toy.brand}
-      age:${toy.age}   ${toy.sex} ${toy.country.name}
-      <a href="/deleteToys/${toy.id}">delete</a>
-      <a href="/updateToys/${toy.id}">update</a>  </li>
+  </tr>
+  <c:forEach var="toy" items="${allToys}">
+    <tr align="center">
+      <td>${toy.brand}</td>
+      <td>${toy.description}</td>
+      <td>${toy.name}</td>
+      <td>${toy.age}</td>
+      <td>${toy.price}</td>
+      <td>${toy.country.name}</td>
+      <td>${toy.sex}</td>
+      <td><a href="/deleteToy/${toy.id}">delete</a></td>
+      <td><a href="/updateToy/${toy.id}">update</a></td>
+
+    </tr>
   </c:forEach>
-</ol>
+
+</table>
 
 <form:form modelAttribute="newToys" method="post">
   <form:input path="name" placeholder="name"/>

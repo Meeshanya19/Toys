@@ -67,7 +67,7 @@ public class FurnitureController {
     public String updateFurniture(@PathVariable int id, Model model){
         model.addAttribute("furniture",furnitureService.findOne(id));
         model.addAttribute("countries",countryService.findAll() );
-        return "update/updateFurniture";
+        return "update/furniture";
     }
 
     @PostMapping(value ="/updateFurniture/{id}" )

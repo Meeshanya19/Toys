@@ -50,20 +50,20 @@ public class ToysController {
         toysService.save(toys);
         return "redirect:/admin/toys";
     }
-    @GetMapping(value ="/deleteToys/{id}")
+    @GetMapping(value ="/deleteToy/{id}")
     public String deleteToys(@PathVariable int id){
         toysService.delete(id);
         return "redirect:/admin/toys";
     }
 
-    @GetMapping(value ="/updateToys/{id}")
+    @GetMapping(value ="/updateToy/{id}")
     public String updateToys(@PathVariable int id, Model model){
         model.addAttribute("toy", toysService.findOne(id));
         model.addAttribute("countries",countryService.findAll() );
-        return "update/updateToys";
+        return "update/toys";
     }
 
-    @PostMapping(value ="/updateToys/{id}" )
+    @PostMapping(value ="/updateToy/{id}" )
     public String updateToys(Toys toys){
         toysService.save(toys);
         return "redirect:/admin/toys";

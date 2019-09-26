@@ -15,15 +15,39 @@
 <body>
 
 <a href="/home">home</a>
-<ol>
-     <c:forEach var="furniture" items="${allFurniture}">
 
-    <li>${furniture.id}  name: ${furniture.name}    price: ${furniture.price} age: ${furniture.age} description: ${furniture.description} brand: ${furniture.brand}
-            material: ${furniture.material} ${furniture.sex} ${furniture.country.name}
-      <a href="/deleteFurniture/${furniture.id}">delete</a>
-      <a href="/updateFurniture/${furniture.id}">update</a>  </li>
-  </c:forEach>
-</ol>
+<table align="left">
+    <tr align="center">
+        <td>brand</td>
+        <td>description</td>
+        <td>name</td>
+        <td>age</td>
+        <td>price</td>
+        <td>country</td>
+        <td>sex</td>
+        <td>material</td>
+        <td>update</td>
+        <td>delete</td>
+
+    </tr>
+    <c:forEach var="furniture" items="${allFurniture}">
+        <tr align="center">
+            <td>${furniture.brand}</td>
+            <td>${furniture.description}</td>
+            <td>${furniture.name}</td>
+            <td>${furniture.age}</td>
+            <td>${furniture.price}</td>
+            <td>${furniture.country.name}</td>
+            <td>${furniture.sex}</td>
+            <td>${furniture.material}</td>
+            <td><a href="/updateFurniture/${furniture.id}">update</a></li></td>
+            <td><a href="/deleteFurniture/${furniture.id}">delete</a></td>
+
+
+        </tr>
+    </c:forEach>
+</table>
+
 
 <form:form modelAttribute="newFurniture" method="post">
     <form:input path="name" placeholder="name"/>
@@ -31,8 +55,8 @@
     <form:input path="age" placeholder="age"/>
     <form:input path="description" placeholder="description"/>
     <form:input path="brand" placeholder="brand"/>
-    <form:select path="sex" items="<%=toys.entity.Enum.Sex.values()%>"  />
-    <form:select path="material" items="<%=toys.entity.Enum.Material.values()%>"  />
+    <form:select path="sex" items="<%=toys.entity.Enum.Sex.values()%>"/>
+    <form:select path="material" items="<%=toys.entity.Enum.Material.values()%>"/>
     <form:select path="country" items="${countries}" itemLabel="name" itemValue="id"/>
     <button>save</button>
 </form:form>

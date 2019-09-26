@@ -12,11 +12,15 @@
     <title></title>
 </head>
 <body>
-<ol var ="user" item=${user}>
-  user name ${user.name}
-  user
 
-  44444444444444
+ <table border="1" >
+   <tr align="center" ><th>user name</th><th>user password</th><th>user email</th> <th>user shipping addres</th></tr>
+   <tr><td>${user.name}</td><td>${user.pssword}</td><td>${user.email}</td><td>${user.shippindAddress}</td></tr>
+ </table>
+ <button>ok</button>
+
+
+
 
 </ol>
 </body>

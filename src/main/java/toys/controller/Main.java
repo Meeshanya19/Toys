@@ -27,8 +27,10 @@ public class Main {
         ValidatorFactory validatorFactory=Validation.buildDefaultValidatorFactory();
         validator=validatorFactory.getValidator();
     }
+StringBuilder stringBuilder=new StringBuilder("ertytr");
 
     public static void main(String[] args) {
+        StringBuilder stringBuilder=new StringBuilder("ertytr");
 
         testValidators(new User("test","","",""));
 

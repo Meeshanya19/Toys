@@ -15,15 +15,34 @@
 <body>
 
 <a href="/home">home</a>
-<ol>
-  <c:forEach var="mams" items="${allMams}">
 
-    <li>${mams.id}  name: ${mams.name}    price: ${mams.price}  description: ${mams.description} brand: ${mams.brand}
-      ${mams.sex} ${mams.country.name}
-      <a href="/deleteMams/${mams.id}">delete</a>
-      <a href="/updateMams/${mams.id}">update</a>  </li>
+<table align="center">
+  <tr align="center">
+    <td>brand</td>
+    <td>description</td>
+    <td>name</td>
+    <td>price</td>
+    <td>country</td>
+    <td>sex</td>
+    <td>delete</td>
+    <td>update</td>
+
+  </tr>
+  <c:forEach var="mams" items="${allMams}">
+    <tr align="center">
+      <td>${mams.brand}</td>
+      <td>${mams.description}</td>
+      <td>${mams.name}</td>
+      <td>${mams.price}</td>
+      <td>${mams.country.name}</td>
+      <td>${mams.sex}</td>
+      <td><a href="/deleteMams/${mams.id}">delete</a></td>
+      <td><a href="/updateMams/${mams.id}">update</a></td>
+
+    </tr>
   </c:forEach>
-</ol>
+
+</table>
 
 <form:form modelAttribute="newMams" method="post">
   <form:input path="name" placeholder="name"/>

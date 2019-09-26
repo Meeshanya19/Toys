@@ -23,21 +23,26 @@ public class UserController {
 
     @GetMapping(value = "/signup")
     public String signup(Model model){
-      //  model.addAttribute("users",userService.findAll());
         model.addAttribute("user",new User());
         return "user/signup";
     }
+
+
+
 
     @PostMapping(value ="/user/signup")
     public String saveUser(User user,Model model ){
         try {
             userService.save(user);
         } catch (Exception e) {
-            e.printStackTrace();
+            if (e.getMessage().equals(UserValidatorMessages.USER_NAME_EMPTY) || e.getMessage().equals(UserValidatorMessages.USER_NAME_ALREADY_EXIST)) {
+                model.addAttribute("userNameException", e.getMessage());
+                return "/user/signup";
+            }
         }
-        model.addAttribute("user",user);
+      //  model.addAttribute("user",user);
 
-        return "user/userData";
+        return "home";
     }
 
     @GetMapping(value = "/admin/signup")
@@ -47,14 +52,14 @@ public class UserController {
         return "admin/signup";
     }
     @PostMapping(value = "/admin/signup")
-    public String save (User user,@ModelAttribute Model model){
+    public String save (User user, Model model){
         try {
             userService.save(user);
         } catch (Exception e) {
            if(e.getMessage().equals(UserValidatorMessages.USER_NAME_EMPTY)||e.getMessage().equals(UserValidatorMessages.USER_NAME_ALREADY_EXIST))
            {
                model.addAttribute("userNameException",e.getMessage());
-               return "admin/signup";
+               return "/admin/signup";
            }
         }
         return "redirect:/admin/signup";
@@ -62,21 +67,25 @@ public class UserController {
 
 
 
-    @GetMapping(value = "updateUser/{id}")
+    @GetMapping(value = "/updateUser/{id}")
     String update(@PathVariable int id,Model model){
         User user=userService.findOne(id);
         model.addAttribute("currentUser",user);
-        return "/update/updateUser";
+        return "update/user";
     }
 
-    @PostMapping(value ="updateUser/{id}")
-    String update(User user)
-    {
-        try {
-            userService.save(user);
-        } catch (Exception e) {
-            e.printStackTrace();
+    @PostMapping(value ="/updateUser/{id}")
+    String update(User user,Model model){
+    try {
+        userService.save(user);
+    } catch (Exception e) {
+        if(e.getMessage().equals(UserValidatorMessages.USER_NAME_EMPTY)||e.getMessage().equals(UserValidatorMessages.USER_NAME_ALREADY_EXIST))
+        {
+            model.addAttribute("userNameException",e.getMessage());
+            return "redirect:/updateUser/{id}";
         }
+    }
+
         return "redirect:/admin/signup";
     }
 

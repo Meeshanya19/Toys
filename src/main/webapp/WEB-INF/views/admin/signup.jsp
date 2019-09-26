@@ -17,7 +17,7 @@
 <a href="/home">home</a>
 
 <span style="color: red">${userNameException}</span>
-<form:form modelAttribute="user" action="/signup" method="post">
+<form:form modelAttribute="user" action="/admin/signup" method="post">
    <form:input path="name"/>
   <form:input path="pssword"/>
   <form:input path="email"/>
